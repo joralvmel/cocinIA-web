@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: 'CocinIA - Tu chef personal con IA',
   description:
     'Genera recetas personalizadas, planifica tu semana y crea tu lista de la compra automaticamente con inteligencia artificial.',
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+  },
   metadataBase: new URL('https://cocinia.online'),
   openGraph: {
     title: 'CocinIA - Tu chef personal con IA',

@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/Badge'
 import { PhoneMockup } from '@/components/ui/PhoneMockup'
 import { motion } from 'framer-motion'
 import { Lock } from 'lucide-react'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 const parent = {
@@ -24,7 +25,7 @@ const child = {
 
 export function Hero() {
   const t = useTranslations()
-  const featureItems = t.raw('features.items') as Array<{ title: string }>
+  const featureItems = t.raw('features.items') as Array<{ title: string; description: string }>
   const chips = [featureItems[0]?.title, featureItems[1]?.title, featureItems[2]?.title].filter(Boolean)
 
   const highlightText = t('hero.title_highlight')
@@ -34,7 +35,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden bg-gradient-to-b from-brand-primary-50/40 to-transparent pt-32"
+      className="relative overflow-hidden bg-gradient-to-b from-brand-primary-50/55 via-transparent to-transparent pt-32 dark:from-brand-primary-900/30"
     >
       <div className="hero-grain" />
       <div className="section-shell relative grid min-h-[100svh] items-center gap-16 pb-16 lg:grid-cols-2">
@@ -84,8 +85,18 @@ export function Hero() {
           className="relative mx-auto w-full max-w-md"
         >
           <PhoneMockup>
-            <div className="h-full w-full bg-gradient-to-b from-brand-primary-100/70 via-[--surface] to-[--card] p-6">
-              <div className="h-full rounded-3xl border border-[--border] bg-[--surface]/80 p-4" />
+            <div className="h-full w-full bg-gradient-to-b from-brand-primary-100/70 via-[--surface] to-[--card] p-5 dark:from-brand-primary-900/35">
+              <div className="flex h-full flex-col rounded-3xl border border-[--border] bg-[--surface] p-4">
+                <div className="flex items-center gap-2 rounded-2xl bg-[--card] px-3 py-2">
+                  <Image src="/logo-mark.png" alt="CocinIA icon" width={22} height={22} className="h-5 w-5" />
+                  <span className="text-sm font-medium text-[--ink]">CocinIA</span>
+                </div>
+                <div className="mt-4 space-y-3">
+                  <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[0]?.description}</div>
+                  <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[1]?.description}</div>
+                  <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[2]?.description}</div>
+                </div>
+              </div>
             </div>
           </PhoneMockup>
 
@@ -103,7 +114,7 @@ export function Hero() {
                     : '-left-6 bottom-20'
               }`}
             >
-              {chip}
+              {index === 0 ? '✨ ' : index === 1 ? '📅 ' : '🛒 '} {chip}
             </motion.div>
           ))}
         </motion.div>

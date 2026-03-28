@@ -36,7 +36,8 @@ export function Navbar() {
     >
       <div className="section-shell flex h-20 items-center justify-between gap-4">
         <Link href="#hero" className="flex items-center gap-3">
-          <Image src="/logo.svg" alt="CocinIA" width={122} height={30} priority />
+          <Image src="/logo-mark.png" alt="CocinIA logo" width={36} height={36} className="h-9 w-9" priority />
+          <span className="font-serif text-2xl font-bold tracking-tight text-brand-primary-600">CocinIA</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

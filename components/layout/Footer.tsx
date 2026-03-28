@@ -12,7 +12,10 @@ export function Footer() {
       <div className="section-shell space-y-10">
         <div className="grid gap-8 md:grid-cols-3 md:items-start">
           <div className="space-y-3">
-            <Image src="/logo.svg" alt="CocinIA" width={132} height={32} />
+            <div className="flex items-center gap-3">
+              <Image src="/logo-mark.png" alt="CocinIA logo" width={34} height={34} className="h-8 w-8" />
+              <span className="font-serif text-2xl font-bold tracking-tight text-brand-primary-600">CocinIA</span>
+            </div>
             <p className="text-sm text-[--muted]">{t('tagline')}</p>
           </div>
 

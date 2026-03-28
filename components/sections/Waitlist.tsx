@@ -45,7 +45,7 @@ export function Waitlist() {
   }
 
   return (
-    <section id="waitlist" className="bg-[--surface] py-24 dark:bg-[--surface]">
+    <section id="waitlist" className="bg-[--bg] py-24 dark:bg-[--bg]">
       <div className="section-shell">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

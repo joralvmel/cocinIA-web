@@ -78,8 +78,9 @@ export function Screenshots() {
                 className="relative h-full w-full"
               >
                 {missing[activeTab.key] ? (
-                  <div className="flex h-full items-center justify-center bg-[--card] p-4 text-center text-sm text-[--muted]">
-                    {activeTab.label}
+                  <div className="flex h-full flex-col items-center justify-center gap-3 bg-[--card] p-4 text-center text-sm text-[--muted]">
+                    <Image src="/logo-mark.png" alt="CocinIA icon" width={56} height={56} className="h-14 w-14" />
+                    <span>{activeTab.label}</span>
                   </div>
                 ) : (
                   <Image

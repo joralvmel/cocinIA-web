@@ -11,16 +11,16 @@ export const brand = {
     900: '#14532d',
   },
   dark: {
-    bg: '#0f1410',
-    surface: '#161d17',
-    card: '#1c251d',
-    border: '#253027',
+    bg: '#111827',
+    surface: '#1f2937',
+    card: '#1f2937',
+    border: '#374151',
   },
   light: {
-    bg: '#fafaf7',
-    surface: '#ffffff',
-    card: '#f4f6f2',
-    border: '#e5e7e0',
+    bg: '#ffffff',
+    surface: '#f9fafb',
+    card: '#ffffff',
+    border: '#e5e7eb',
   },
 }
 
