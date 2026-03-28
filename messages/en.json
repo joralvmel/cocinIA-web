@@ -1,0 +1,163 @@
+{
+  "nav": {
+    "features": "Features",
+    "screenshots": "App",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "cta": "Download"
+  },
+  "hero": {
+    "badge": "Available on Android",
+    "title": "Your personal chef, powered by AI",
+    "title_highlight": "powered by AI",
+    "subtitle": "CocinIA generates recipes tailored to you, plans your week, and automatically builds your shopping list. Effortlessly.",
+    "cta_primary": "Download on Android",
+    "cta_secondary": "See features",
+    "social_proof": "Recipes generated this week"
+  },
+  "features": {
+    "label": "Features",
+    "title": "Everything you need in your kitchen",
+    "subtitle": "Four features designed to make your life in the kitchen easier, more varied, and better organized.",
+    "items": [
+      {
+        "icon": "Sparkles",
+        "title": "AI Recipes",
+        "description": "Describe what you crave or the ingredients you have. CocinIA generates a complete recipe with steps, nutrition, and estimated cost in seconds."
+      },
+      {
+        "icon": "CalendarDays",
+        "title": "Weekly Plan",
+        "description": "Generate a complete meal plan for the whole week, tailored to your dietary preferences, kitchen equipment, and calorie goals."
+      },
+      {
+        "icon": "ShoppingCart",
+        "title": "Shopping List",
+        "description": "CocinIA automatically extracts all ingredients from your recipes and weekly plan and organizes them into a ready-to-use list."
+      },
+      {
+        "icon": "BookOpen",
+        "title": "Personal Cookbook",
+        "description": "Save, organize, and search all your generated recipes. Filter by meal type, difficulty, or prep time."
+      }
+    ]
+  },
+  "screenshots": {
+    "label": "The app",
+    "title": "Designed to be a joy to use",
+    "tabs": [
+      { "key": "home", "label": "Home" },
+      { "key": "plan", "label": "Weekly plan" },
+      { "key": "recipes", "label": "Cookbook" },
+      { "key": "shopping", "label": "Shopping list" }
+    ]
+  },
+  "how": {
+    "label": "How it works",
+    "title": "From idea to plate in minutes",
+    "steps": [
+      {
+        "title": "Tell us what you want",
+        "description": "Type what you are craving, what ingredients you have, or let AI surprise you with something new."
+      },
+      {
+        "title": "AI generates your recipe",
+        "description": "In seconds you get a complete recipe with detailed steps, nutrition info, and estimated cost."
+      },
+      {
+        "title": "Save and organize",
+        "description": "Add the recipe to your cookbook, send ingredients to your shopping list, and plan your week."
+      },
+      {
+        "title": "Time to cook!",
+        "description": "Follow the steps in the app, check chef tips, and enjoy your meal."
+      }
+    ]
+  },
+  "pricing": {
+    "label": "Pricing",
+    "title": "Start free, scale whenever you want",
+    "subtitle": "No credit card required. Cancel anytime.",
+    "free": {
+      "name": "Free",
+      "price": "€0",
+      "period": "forever",
+      "description": "Perfect for exploring CocinIA.",
+      "cta": "Download free",
+      "features": [
+        "30 generated recipes per month",
+        "1 active weekly plan",
+        "Cookbook up to 30 recipes",
+        "Basic shopping list",
+        "Spanish and English support",
+        "With ads"
+      ]
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "€4.99",
+      "period": "per month",
+      "description": "For people who want the full experience.",
+      "cta": "Start Premium",
+      "badge": "Most popular",
+      "features": [
+        "Unlimited recipe generation",
+        "Unlimited weekly plans",
+        "Unlimited cookbook",
+        "Advanced shopping list",
+        "No ads",
+        "Priority access to new features"
+      ]
+    },
+    "first_month": "🎉 First month free for new users"
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "q": "Does it work without an internet connection?",
+        "a": "AI recipe generation requires an internet connection, but you can view your saved recipes and shopping list offline."
+      },
+      {
+        "q": "Is my data private?",
+        "a": "Yes. Your recipes, preferences, and profile data are private and never shared with third parties. You can delete your account at any time."
+      },
+      {
+        "q": "Can I cancel Premium?",
+        "a": "Yes, you can cancel at any time from your Google Play account settings. There are no long-term commitments or penalties."
+      },
+      {
+        "q": "What happens when I reach the free plan limit?",
+        "a": "Generating new recipes is blocked until the next month. Your saved recipes and active plan remain accessible."
+      },
+      {
+        "q": "What languages is the app available in?",
+        "a": "CocinIA is available in Spanish and English. The app automatically detects your device language."
+      },
+      {
+        "q": "When will iOS be available?",
+        "a": "The iOS version is in development. Join the waitlist and we will let you know as soon as it is available."
+      }
+    ]
+  },
+  "waitlist": {
+    "title": "Have an iPhone? Join the waitlist",
+    "subtitle": "The iOS version is on the way. Be the first to know.",
+    "badge_android": "Android available now",
+    "badge_ios": "iOS coming soon",
+    "placeholder": "your@email.com",
+    "cta": "Join waitlist",
+    "note": "No spam. We only email you when iOS is ready.",
+    "success": "You are in! We will notify you when iOS arrives."
+  },
+  "footer": {
+    "tagline": "Your personal AI chef",
+    "links": {
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "contact": "Contact"
+    },
+    "copyright": "© 2026 CocinIA · cocinia.online"
+  }
+}

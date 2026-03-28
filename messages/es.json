@@ -1,0 +1,163 @@
+{
+  "nav": {
+    "features": "Funciones",
+    "screenshots": "App",
+    "pricing": "Precios",
+    "faq": "FAQ",
+    "cta": "Descargar"
+  },
+  "hero": {
+    "badge": "Disponible en Android",
+    "title": "Tu chef personal, impulsado por IA",
+    "title_highlight": "impulsado por IA",
+    "subtitle": "CocinIA genera recetas a tu medida, planifica tu semana y crea tu lista de la compra automáticamente. Sin esfuerzo.",
+    "cta_primary": "Descargar en Android",
+    "cta_secondary": "Ver funciones",
+    "social_proof": "Recetas generadas esta semana"
+  },
+  "features": {
+    "label": "Funciones",
+    "title": "Todo lo que necesitas en tu cocina",
+    "subtitle": "Cuatro funciones diseñadas para hacer tu vida en la cocina más fácil, variada y organizada.",
+    "items": [
+      {
+        "icon": "Sparkles",
+        "title": "Recetas con IA",
+        "description": "Describe lo que te apetece o los ingredientes que tienes. CocinIA genera una receta completa con pasos, nutrición y coste estimado en segundos."
+      },
+      {
+        "icon": "CalendarDays",
+        "title": "Plan semanal",
+        "description": "Genera un plan de comidas completo para toda la semana, adaptado a tus preferencias dietéticas, equipamiento y objetivos calóricos."
+      },
+      {
+        "icon": "ShoppingCart",
+        "title": "Lista de la compra",
+        "description": "CocinIA extrae automáticamente todos los ingredientes de tus recetas y del plan semanal y los organiza en una lista lista para usar."
+      },
+      {
+        "icon": "BookOpen",
+        "title": "Recetario personal",
+        "description": "Guarda, organiza y busca todas tus recetas generadas. Filtra por tipo de comida, dificultad o tiempo de preparación."
+      }
+    ]
+  },
+  "screenshots": {
+    "label": "La app",
+    "title": "Diseñada para ser un placer de usar",
+    "tabs": [
+      { "key": "home", "label": "Inicio" },
+      { "key": "plan", "label": "Plan semanal" },
+      { "key": "recipes", "label": "Recetario" },
+      { "key": "shopping", "label": "Lista de compra" }
+    ]
+  },
+  "how": {
+    "label": "Cómo funciona",
+    "title": "De la idea al plato en minutos",
+    "steps": [
+      {
+        "title": "Cuéntanos qué quieres",
+        "description": "Escribe lo que te apetece, los ingredientes que tienes o deja que la IA te sorprenda con algo nuevo."
+      },
+      {
+        "title": "La IA genera tu receta",
+        "description": "En segundos recibes una receta completa con pasos detallados, información nutricional y coste estimado."
+      },
+      {
+        "title": "Guarda y organiza",
+        "description": "Añade la receta a tu recetario, agrega los ingredientes a tu lista de la compra y planifica tu semana."
+      },
+      {
+        "title": "¡A cocinar!",
+        "description": "Sigue los pasos desde la app, consulta los consejos del chef y disfruta de tu comida."
+      }
+    ]
+  },
+  "pricing": {
+    "label": "Precios",
+    "title": "Empieza gratis, escala cuando quieras",
+    "subtitle": "Sin tarjeta de crédito. Cancela cuando quieras.",
+    "free": {
+      "name": "Gratuito",
+      "price": "0€",
+      "period": "para siempre",
+      "description": "Perfecto para empezar a explorar CocinIA.",
+      "cta": "Descargar gratis",
+      "features": [
+        "30 recetas generadas al mes",
+        "1 plan semanal activo",
+        "Recetario hasta 30 recetas",
+        "Lista de la compra básica",
+        "Soporte español e inglés",
+        "Con anuncios"
+      ]
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "4,99€",
+      "period": "al mes",
+      "description": "Para quienes quieren sacarle el máximo partido.",
+      "cta": "Empezar Premium",
+      "badge": "Más popular",
+      "features": [
+        "Generación ilimitada de recetas",
+        "Planes semanales ilimitados",
+        "Recetario ilimitado",
+        "Lista de la compra avanzada",
+        "Sin anuncios",
+        "Acceso prioritario a nuevas funciones"
+      ]
+    },
+    "first_month": "🎉 Primer mes gratis para nuevos usuarios"
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Funciona sin conexión a internet?",
+        "a": "La generación de recetas con IA requiere conexión, pero puedes consultar tus recetas guardadas y la lista de la compra sin internet."
+      },
+      {
+        "q": "¿Mis datos son privados?",
+        "a": "Sí. Tus recetas, preferencias y datos de perfil son privados y nunca se comparten con terceros. Puedes eliminar tu cuenta en cualquier momento."
+      },
+      {
+        "q": "¿Puedo cancelar la suscripción Premium?",
+        "a": "Sí, puedes cancelar en cualquier momento desde la configuración de tu cuenta en Google Play. No hay permanencia ni penalizaciones."
+      },
+      {
+        "q": "¿Qué pasa cuando llego al límite del plan gratuito?",
+        "a": "Se bloquea la generación de nuevas recetas hasta el próximo mes. Tus recetas guardadas y el plan activo siguen accesibles."
+      },
+      {
+        "q": "¿En qué idiomas está disponible la app?",
+        "a": "CocinIA está disponible en español e inglés. La app detecta el idioma de tu dispositivo automáticamente."
+      },
+      {
+        "q": "¿Cuándo estará disponible en iOS?",
+        "a": "La versión iOS está en desarrollo. Apúntate a la lista de espera y te avisamos en cuanto esté disponible."
+      }
+    ]
+  },
+  "waitlist": {
+    "title": "¿Tienes iPhone? Únete a la lista de espera",
+    "subtitle": "La versión iOS está en camino. Sé el primero en saberlo.",
+    "badge_android": "Android disponible ahora",
+    "badge_ios": "iOS próximamente",
+    "placeholder": "tu@email.com",
+    "cta": "Apuntarme",
+    "note": "Sin spam. Solo te avisamos cuando iOS esté listo.",
+    "success": "¡Apuntado! Te avisaremos cuando llegue iOS."
+  },
+  "footer": {
+    "tagline": "Tu chef personal con IA",
+    "links": {
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "contact": "Contacto"
+    },
+    "copyright": "© 2026 CocinIA · cocinia.online"
+  }
+}

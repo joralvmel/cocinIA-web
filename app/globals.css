@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #fafaf7;
+  --surface: #ffffff;
+  --card: #f4f6f2;
+  --border: #e5e7e0;
+  --ink: #111810;
+  --muted: #6b7260;
+  --green: #16a34a;
+}
+
+.dark {
+  --bg: #0f1410;
+  --surface: #161d17;
+  --card: #1c251d;
+  --border: #253027;
+  --ink: #f0f2ed;
+  --muted: #8a9485;
+  --green: #22c55e;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html,
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: -0.02em;
+}
+
+.hero-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  mix-blend-mode: soft-light;
+  background-image: radial-gradient(circle at 20% 20%, rgba(17, 24, 16, 0.9) 0.75px, transparent 0.75px),
+    radial-gradient(circle at 80% 80%, rgba(17, 24, 16, 0.7) 0.75px, transparent 0.75px);
+  background-size: 3px 3px, 4px 4px;
+}
+
+.section-shell {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
