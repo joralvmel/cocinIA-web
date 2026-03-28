@@ -5,7 +5,8 @@ import { SectionLabel } from '@/components/ui/SectionLabel'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { useMemo, useState } from 'react'
+import { useTheme } from 'next-themes'
+import { useEffect, useMemo, useState } from 'react'
 
 interface TabItem {
   key: string
@@ -14,11 +15,30 @@ interface TabItem {
 
 export function Screenshots() {
   const t = useTranslations()
+  const { resolvedTheme } = useTheme()
   const tabs = useMemo(() => t.raw('screenshots.tabs') as TabItem[], [t])
   const [active, setActive] = useState(tabs[0]?.key ?? 'home')
-  const [missing, setMissing] = useState<Record<string, boolean>>({})
+  const [mounted, setMounted] = useState(false)
+  const [failedAttempts, setFailedAttempts] = useState<Record<string, number>>({})
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const activeTab = tabs.find((tab) => tab.key === active) ?? tabs[0]
+  const themeKey: 'light' | 'dark' = mounted && resolvedTheme === 'dark' ? 'dark' : 'light'
+  const screenshotKey = activeTab.key === 'shopping' ? 'shopping-list' : activeTab.key
+  const assetId = `${screenshotKey}-${themeKey}`
+  const candidates = [
+    `/screenshots/${screenshotKey}-${themeKey}.jpg`,
+    `/screenshots/${screenshotKey}-${themeKey}.png`,
+    `/screenshots/${activeTab.key}-${themeKey}.jpg`,
+    `/screenshots/${activeTab.key}-${themeKey}.png`,
+    `/screenshots/${activeTab.key}.png`,
+  ].filter((value, index, array) => array.indexOf(value) === index)
+  const attemptIndex = failedAttempts[assetId] ?? 0
+  const currentSrc = candidates[attemptIndex]
+  const isMissing = !currentSrc
 
   return (
     <section id="screenshots" className="bg-[--bg] py-24 dark:bg-[--surface]">
@@ -77,18 +97,23 @@ export function Screenshots() {
                 transition={{ duration: 0.35, ease: 'easeOut' }}
                 className="relative h-full w-full"
               >
-                {missing[activeTab.key] ? (
+                {isMissing ? (
                   <div className="flex h-full flex-col items-center justify-center gap-3 bg-[--card] p-4 text-center text-sm text-[--muted]">
                     <Image src="/logo-mark.png" alt="CocinIA icon" width={56} height={56} className="h-14 w-14" />
                     <span>{activeTab.label}</span>
                   </div>
                 ) : (
                   <Image
-                    src={`/screenshots/${activeTab.key}.png`}
+                    src={currentSrc}
                     alt={activeTab.label}
                     fill
                     className="object-contain"
-                    onError={() => setMissing((prev) => ({ ...prev, [activeTab.key]: true }))}
+                    onError={() =>
+                      setFailedAttempts((prev) => ({
+                        ...prev,
+                        [assetId]: (prev[assetId] ?? 0) + 1,
+                      }))
+                    }
                   />
                 )}
               </motion.div>

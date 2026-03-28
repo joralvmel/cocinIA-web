@@ -2,11 +2,13 @@
 
 import { Badge } from '@/components/ui/Badge'
 import { PhoneMockup } from '@/components/ui/PhoneMockup'
-import { heroDemoVideoSrc } from '@/lib/brand'
+import { AppLocale, heroDemoVideos } from '@/lib/brand'
 import { motion } from 'framer-motion'
 import { Lock } from 'lucide-react'
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
+import { useEffect, useMemo, useState } from 'react'
 
 const parent = {
   hidden: { opacity: 0 },
@@ -26,8 +28,28 @@ const child = {
 
 export function Hero() {
   const t = useTranslations()
+  const locale = useLocale()
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const normalizedLocale: AppLocale = useMemo(() => {
+    return locale.toLowerCase().startsWith('en') ? 'en' : 'es'
+  }, [locale])
+
+  const themeKey: 'light' | 'dark' = mounted && resolvedTheme === 'dark' ? 'dark' : 'light'
+  const heroDemoVideoSrc = heroDemoVideos[themeKey][normalizedLocale]
+
   const featureItems = t.raw('features.items') as Array<{ title: string; description: string }>
-  const chips = [featureItems[0]?.title, featureItems[1]?.title, featureItems[2]?.title].filter(Boolean)
+  const chips = [
+    { title: featureItems[0]?.title, icon: '✨', positionClass: '-left-8 top-20' },
+    { title: featureItems[1]?.title, icon: '📅', positionClass: '-right-6 top-40' },
+    { title: featureItems[2]?.title, icon: '🛒', positionClass: '-left-6 bottom-24' },
+    { title: featureItems[3]?.title, icon: '📚', positionClass: '-right-8 bottom-14' },
+  ].filter((chip): chip is { title: string; icon: string; positionClass: string } => Boolean(chip.title))
 
   const highlightText = t('hero.title_highlight')
   const title = t('hero.title')
@@ -86,9 +108,10 @@ export function Hero() {
           className="relative mx-auto w-full max-w-md"
         >
           <PhoneMockup>
-            {heroDemoVideoSrc ? (
+            {mounted ? (
               <div className="h-full w-full bg-black">
                 <video
+                  key={`${themeKey}-${normalizedLocale}`}
                   className="h-full w-full object-cover"
                   autoPlay
                   muted
@@ -120,19 +143,13 @@ export function Hero() {
 
           {chips.map((chip, index) => (
             <motion.div
-              key={chip}
+              key={chip.title}
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: 'easeOut', delay: 0.4 + index * 0.12 }}
-              className={`absolute rounded-full border border-[--border] bg-[--surface] px-3 py-1 text-xs font-medium shadow-sm ${
-                index === 0
-                  ? '-left-8 top-20'
-                  : index === 1
-                    ? '-right-6 top-44'
-                    : '-left-6 bottom-20'
-              }`}
+              className={`absolute rounded-full border border-[--border] bg-[--surface] px-3 py-1 text-xs font-medium shadow-sm ${chip.positionClass}`}
             >
-              {index === 0 ? '✨ ' : index === 1 ? '📅 ' : '🛒 '} {chip}
+              {chip.icon} {chip.title}
             </motion.div>
           ))}
         </motion.div>

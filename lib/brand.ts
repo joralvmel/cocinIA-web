@@ -28,5 +28,13 @@ export type AppLocale = 'es' | 'en'
 export const locales: AppLocale[] = ['es', 'en']
 export const defaultLocale: AppLocale = 'es'
 
-// Set this to something like '/demo/recipe-generation.mp4' when the recording is ready.
-export const heroDemoVideoSrc = ''
+export const heroDemoVideos: Record<'light' | 'dark', Record<AppLocale, string>> = {
+  light: {
+    en: '/demo/light-en.mp4',
+    es: '/demo/light-es.mp4',
+  },
+  dark: {
+    en: '/demo/dark-en.mp4',
+    es: '/demo/dark-es.mp4',
+  },
+}
