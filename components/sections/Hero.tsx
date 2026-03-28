@@ -74,12 +74,6 @@ export function Hero() {
   const heroDemoVideoSrc = heroDemoVideos[themeKey][normalizedLocale]
 
   const featureItems = t.raw('features.items') as Array<{ title: string; description: string }>
-  const chips = [
-    { title: featureItems[0]?.title, icon: '✨', positionClass: 'left-2 top-16 md:-left-8 md:top-20' },
-    { title: featureItems[1]?.title, icon: '📅', positionClass: 'right-2 top-36 md:-right-6 md:top-40' },
-    { title: featureItems[2]?.title, icon: '🛒', positionClass: 'left-3 bottom-24 md:-left-6 md:bottom-24' },
-    { title: featureItems[3]?.title, icon: '📚', positionClass: 'right-3 bottom-14 md:-right-8 md:bottom-14' },
-  ].filter((chip): chip is { title: string; icon: string; positionClass: string } => Boolean(chip.title))
 
   const formattedRecipesCount = useMemo(() => {
     const count = recipesCount ?? 24381
@@ -175,18 +169,6 @@ export function Hero() {
               </div>
             )}
           </PhoneMockup>
-
-          {chips.map((chip, index) => (
-            <motion.div
-              key={chip.title}
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.4 + index * 0.12 }}
-              className={`absolute max-w-[9.5rem] rounded-full border border-[--border] bg-[--surface] px-3 py-1 text-xs font-medium shadow-sm sm:max-w-none ${chip.positionClass}`}
-            >
-              <span className="block truncate">{chip.icon} {chip.title}</span>
-            </motion.div>
-          ))}
         </motion.div>
       </div>
     </section>
