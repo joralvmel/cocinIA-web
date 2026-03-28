@@ -1,11 +1,14 @@
 'use client'
 
 import { Instagram } from 'lucide-react'
+import Link from 'next/link'
+import { useLocale } from 'next-intl'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
 export function Footer() {
   const t = useTranslations('footer')
+  const locale = useLocale()
 
   return (
     <footer className="border-t border-[--border] bg-[--surface] py-16 dark:bg-[--surface]">
@@ -20,9 +23,15 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-5 text-sm text-[--muted] md:justify-center">
-            <a href="#" className="transition hover:text-[--ink]">{t('links.privacy')}</a>
-            <a href="#" className="transition hover:text-[--ink]">{t('links.terms')}</a>
-            <a href="#" className="transition hover:text-[--ink]">{t('links.contact')}</a>
+            <Link href={`/${locale}/privacy`} className="transition hover:text-[--ink]">
+              {t('links.privacy')}
+            </Link>
+            <Link href={`/${locale}/terms`} className="transition hover:text-[--ink]">
+              {t('links.terms')}
+            </Link>
+            <Link href={`/${locale}/contact`} className="transition hover:text-[--ink]">
+              {t('links.contact')}
+            </Link>
           </div>
 
           <div className="flex items-center justify-start gap-3 md:justify-end">

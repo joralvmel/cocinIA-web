@@ -167,5 +167,58 @@
       "contact": "Contact"
     },
     "copyright": "© 2026 CocinIA · cocinia.online"
+  },
+  "legal": {
+    "privacy": {
+      "back": "Back to home",
+      "title": "Privacy Policy",
+      "updated": "Last updated: March 28, 2026",
+      "sections": {
+        "data": {
+          "title": "Data we collect",
+          "body": "We collect the email you submit to the waitlist and the minimum technical data needed to run the website securely."
+        },
+        "use": {
+          "title": "How we use your data",
+          "body": "We use your data to notify you about product updates, improve the experience, and keep the service secure. We do not sell your data to third parties."
+        },
+        "rights": {
+          "title": "Your rights",
+          "body": "You can request access, correction, or deletion of your data by contacting hola@cocinia.online."
+        }
+      }
+    },
+    "terms": {
+      "back": "Back to home",
+      "title": "Terms and Conditions",
+      "updated": "Last updated: March 28, 2026",
+      "sections": {
+        "acceptance": {
+          "title": "Acceptance of terms",
+          "body": "By using CocinIA, you agree to these terms. If you do not agree, you must stop using the service."
+        },
+        "usage": {
+          "title": "Permitted use",
+          "body": "You must use the platform lawfully and responsibly. Any attempt to harm the system, abuse the API, or bypass security is prohibited."
+        },
+        "liability": {
+          "title": "Limitation of liability",
+          "body": "CocinIA provides cooking and nutrition recommendations for informational purposes. Final use of this information is the user's responsibility."
+        }
+      }
+    },
+    "contact": {
+      "back": "Back to home",
+      "title": "Contact",
+      "subtitle": "If you need help, support, or business information, you can reach us through these channels.",
+      "email": {
+        "title": "Email",
+        "body": "We usually reply within 24-48 business hours."
+      },
+      "social": {
+        "title": "Instagram",
+        "body": "Share your recipes and tag us to be featured in the CocinIA community."
+      }
+    }
   }
 }

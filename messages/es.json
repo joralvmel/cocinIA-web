@@ -167,5 +167,58 @@
       "contact": "Contacto"
     },
     "copyright": "© 2026 CocinIA · cocinia.online"
+  },
+  "legal": {
+    "privacy": {
+      "back": "Volver al inicio",
+      "title": "Política de Privacidad",
+      "updated": "Última actualización: 28 de marzo de 2026",
+      "sections": {
+        "data": {
+          "title": "Datos que recopilamos",
+          "body": "Recopilamos el email que nos envías en la lista de espera y los datos mínimos técnicos necesarios para operar la web de forma segura."
+        },
+        "use": {
+          "title": "Cómo usamos tus datos",
+          "body": "Usamos tus datos para avisarte de novedades del producto, mejorar la experiencia y mantener la seguridad del servicio. No vendemos tus datos a terceros."
+        },
+        "rights": {
+          "title": "Tus derechos",
+          "body": "Puedes solicitar acceso, rectificación o eliminación de tus datos escribiendo a hola@cocinia.online."
+        }
+      }
+    },
+    "terms": {
+      "back": "Volver al inicio",
+      "title": "Términos y Condiciones",
+      "updated": "Última actualización: 28 de marzo de 2026",
+      "sections": {
+        "acceptance": {
+          "title": "Aceptación de condiciones",
+          "body": "Al usar CocinIA aceptas estos términos. Si no estás de acuerdo, debes dejar de usar el servicio."
+        },
+        "usage": {
+          "title": "Uso permitido",
+          "body": "Debes usar la plataforma de forma legal y responsable. Está prohibido intentar dañar el sistema, abusar de la API o vulnerar la seguridad."
+        },
+        "liability": {
+          "title": "Limitación de responsabilidad",
+          "body": "CocinIA ofrece recomendaciones culinarias y nutricionales de carácter informativo. El uso final de la información es responsabilidad del usuario."
+        }
+      }
+    },
+    "contact": {
+      "back": "Volver al inicio",
+      "title": "Contacto",
+      "subtitle": "Si necesitas ayuda, soporte o información comercial, puedes escribirnos por estos canales.",
+      "email": {
+        "title": "Email",
+        "body": "Respondemos normalmente en 24-48 horas laborables."
+      },
+      "social": {
+        "title": "Instagram",
+        "body": "Comparte tus recetas y etiquétanos para aparecer en la comunidad de CocinIA."
+      }
+    }
   }
 }
