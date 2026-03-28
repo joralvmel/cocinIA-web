@@ -63,7 +63,8 @@ export async function POST() {
     console.log('[recipes-count] Response status:', result.status)
     console.log('[recipes-count] Response headers:', result.headers['content-range'])
 
-    if (result.status !== 200) {
+    // Supabase returns 200 or 206 depending on whether there's data
+    if (result.status !== 200 && result.status !== 206) {
       return NextResponse.json({ error: `HTTP ${result.status}`, body: result.body.substring(0, 200) }, { status: 500 })
     }
 

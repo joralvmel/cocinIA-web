@@ -5,6 +5,20 @@ import { motion } from 'framer-motion'
 import { useLocale, useTranslations } from 'next-intl'
 import { FormEvent, useState } from 'react'
 
+type WaitlistErrorCode =
+  | 'invalid_email'
+  | 'email_exists'
+  | 'rate_limited'
+  | 'permission_error'
+  | 'config_error'
+  | 'server_error'
+  | 'network_error'
+
+interface WaitlistResponse {
+  success?: boolean
+  code?: WaitlistErrorCode
+}
+
 export function Waitlist() {
   const t = useTranslations('waitlist')
   const locale = useLocale()
@@ -16,6 +30,13 @@ export function Waitlist() {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setError('')
+
+    const normalizedEmail = email.trim().toLowerCase()
+    if (!normalizedEmail) {
+      setError(t('errors.invalid_email'))
+      return
+    }
+
     setLoading(true)
 
     try {
@@ -24,13 +45,35 @@ export function Waitlist() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, locale }),
+        body: JSON.stringify({ email: normalizedEmail, locale }),
       })
 
-      const data = (await response.json()) as { success?: boolean; error?: string }
+      const data = (await response.json()) as WaitlistResponse
 
       if (!response.ok || !data.success) {
-        setError(data.error ?? 'error')
+        switch (data.code) {
+          case 'invalid_email':
+            setError(t('errors.invalid_email'))
+            break
+          case 'email_exists':
+            setError(t('errors.email_exists'))
+            break
+          case 'rate_limited':
+            setError(t('errors.rate_limited'))
+            break
+          case 'permission_error':
+            setError(t('errors.permission'))
+            break
+          case 'network_error':
+            setError(t('errors.network'))
+            break
+          case 'config_error':
+          case 'server_error':
+          default:
+            setError(t('errors.server'))
+            break
+        }
+
         setLoading(false)
         return
       }
@@ -38,7 +81,7 @@ export function Waitlist() {
       setSuccess(true)
       setEmail('')
     } catch {
-      setError('error')
+      setError(t('errors.network'))
     } finally {
       setLoading(false)
     }
@@ -73,6 +116,7 @@ export function Waitlist() {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder={t('placeholder')}
+                  aria-invalid={Boolean(error)}
                   className="h-12 flex-1 rounded-full border border-transparent bg-[--surface] px-5 text-sm outline-none transition focus:border-brand-primary-600"
                 />
                 <button

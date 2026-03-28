@@ -149,7 +149,15 @@
     "placeholder": "your@email.com",
     "cta": "Join waitlist",
     "note": "No spam. We only email you when iOS is ready.",
-    "success": "You are in! We will notify you when iOS arrives."
+    "success": "You are in! We will notify you when iOS arrives.",
+    "errors": {
+      "invalid_email": "Please enter a valid email.",
+      "email_exists": "This email is already on the waitlist.",
+      "rate_limited": "Too many attempts. Please try again in a few minutes.",
+      "permission": "Waitlist permissions are not enabled yet. Please retry in 1 minute.",
+      "server": "Could not complete signup. Please try again.",
+      "network": "Network error. Check your connection and try again."
+    }
   },
   "footer": {
     "tagline": "Your personal AI chef",

@@ -149,7 +149,15 @@
     "placeholder": "tu@email.com",
     "cta": "Apuntarme",
     "note": "Sin spam. Solo te avisamos cuando iOS esté listo.",
-    "success": "¡Apuntado! Te avisaremos cuando llegue iOS."
+    "success": "¡Apuntado! Te avisaremos cuando llegue iOS.",
+    "errors": {
+      "invalid_email": "Introduce un email válido.",
+      "email_exists": "Este email ya está en la lista de espera.",
+      "rate_limited": "Demasiados intentos. Prueba de nuevo en unos minutos.",
+      "permission": "La lista de espera no está habilitada todavía. Reintenta en 1 minuto.",
+      "server": "No se pudo completar el registro. Inténtalo de nuevo.",
+      "network": "Error de conexión. Revisa internet e inténtalo de nuevo."
+    }
   },
   "footer": {
     "tagline": "Tu chef personal con IA",

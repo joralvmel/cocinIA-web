@@ -5,6 +5,35 @@ interface WaitlistPayload {
   locale?: string
 }
 
+type WaitlistErrorCode =
+  | 'invalid_email'
+  | 'email_exists'
+  | 'rate_limited'
+  | 'permission_error'
+  | 'config_error'
+  | 'server_error'
+  | 'network_error'
+
+const EMAIL_REGEX = /^(?=.{5,254}$)[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i
+
+function isDuplicateEmailError(status: number, rawError: string): boolean {
+  if (status === 409) {
+    return true
+  }
+
+  const normalized = rawError.toLowerCase()
+  return normalized.includes('duplicate key') || normalized.includes('23505') || normalized.includes('waitlist_emails_email_key')
+}
+
+function isPermissionError(status: number, rawError: string): boolean {
+  const normalized = rawError.toLowerCase()
+  return status === 401 || status === 403 || normalized.includes('42501') || normalized.includes('row-level security policy')
+}
+
+function jsonError(code: WaitlistErrorCode, status: number) {
+  return NextResponse.json({ success: false, code }, { status })
+}
+
 // Run this in Supabase SQL Editor before deploying
 // create table public.waitlist_emails (
 //   id uuid primary key default gen_random_uuid(),
@@ -23,15 +52,15 @@ export async function POST(request: NextRequest) {
     const email = payload.email?.trim().toLowerCase()
     const locale = payload.locale === 'en' ? 'en' : 'es'
 
-    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-      return NextResponse.json({ error: 'Invalid email' }, { status: 400 })
+    if (!email || !EMAIL_REGEX.test(email)) {
+      return jsonError('invalid_email', 400)
     }
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
     if (!supabaseUrl || !supabaseAnonKey) {
-      return NextResponse.json({ error: 'Missing Supabase configuration' }, { status: 500 })
+      return jsonError('config_error', 500)
     }
 
     const response = await fetch(`${supabaseUrl}/rest/v1/waitlist_emails`, {
@@ -40,22 +69,32 @@ export async function POST(request: NextRequest) {
         apikey: supabaseAnonKey,
         Authorization: `Bearer ${supabaseAnonKey}`,
         'Content-Type': 'application/json',
-        Prefer: 'return=representation',
+        // Minimal response avoids requiring SELECT permission under RLS.
+        Prefer: 'return=minimal',
       },
       body: JSON.stringify({ email, locale }),
     })
 
     if (!response.ok) {
       const errorText = await response.text()
-      if (response.status === 409 || errorText.includes('duplicate key')) {
-        return NextResponse.json({ success: true })
+
+      if (response.status === 429) {
+        return jsonError('rate_limited', 429)
       }
 
-      return NextResponse.json({ error: 'Unable to join waitlist' }, { status: 500 })
+      if (isPermissionError(response.status, errorText)) {
+        return jsonError('permission_error', 500)
+      }
+
+      if (isDuplicateEmailError(response.status, errorText)) {
+        return jsonError('email_exists', 409)
+      }
+
+      return jsonError('server_error', 500)
     }
 
     return NextResponse.json({ success: true })
   } catch {
-    return NextResponse.json({ error: 'Unexpected error' }, { status: 500 })
+    return jsonError('network_error', 500)
   }
 }
