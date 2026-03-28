@@ -47,8 +47,8 @@
     "title": "Diseñada para ser un placer de usar",
     "tabs": [
       { "key": "home", "label": "Inicio" },
-      { "key": "plan", "label": "Plan semanal" },
       { "key": "recipes", "label": "Recetario" },
+      { "key": "plan", "label": "Plan semanal" },
       { "key": "shopping", "label": "Lista de compra" }
     ]
   },

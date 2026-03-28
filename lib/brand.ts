@@ -27,3 +27,6 @@ export const brand = {
 export type AppLocale = 'es' | 'en'
 export const locales: AppLocale[] = ['es', 'en']
 export const defaultLocale: AppLocale = 'es'
+
+// Set this to something like '/demo/recipe-generation.mp4' when the recording is ready.
+export const heroDemoVideoSrc = ''

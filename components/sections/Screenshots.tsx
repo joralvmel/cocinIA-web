@@ -39,7 +39,7 @@ export function Screenshots() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+          className="mt-10 grid w-full grid-cols-4 gap-1 rounded-xl bg-[--card] p-1"
         >
           {tabs.map((tab) => {
             const activeClass = tab.key === active
@@ -48,13 +48,13 @@ export function Screenshots() {
                 key={tab.key}
                 type="button"
                 onClick={() => setActive(tab.key)}
-                className={`border-b-2 px-2 py-2 text-sm transition ${
+                className={`min-w-0 rounded-lg px-1 py-2 text-[11px] font-medium leading-tight transition sm:text-sm ${
                   activeClass
-                    ? 'border-brand-primary-600 text-brand-primary-600'
-                    : 'border-transparent text-[--muted] hover:text-[--ink]'
+                    ? 'bg-brand-primary-600/10 text-brand-primary-600'
+                    : 'text-[--muted] hover:text-[--ink]'
                 }`}
               >
-                {tab.label}
+                <span className="block truncate">{tab.label}</span>
               </button>
             )
           })}

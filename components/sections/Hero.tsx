@@ -2,6 +2,7 @@
 
 import { Badge } from '@/components/ui/Badge'
 import { PhoneMockup } from '@/components/ui/PhoneMockup'
+import { heroDemoVideoSrc } from '@/lib/brand'
 import { motion } from 'framer-motion'
 import { Lock } from 'lucide-react'
 import Image from 'next/image'
@@ -85,19 +86,36 @@ export function Hero() {
           className="relative mx-auto w-full max-w-md"
         >
           <PhoneMockup>
-            <div className="h-full w-full bg-gradient-to-b from-brand-primary-100/70 via-[--surface] to-[--card] p-5 dark:from-brand-primary-900/35">
-              <div className="flex h-full flex-col rounded-3xl border border-[--border] bg-[--surface] p-4">
-                <div className="flex items-center gap-2 rounded-2xl bg-[--card] px-3 py-2">
-                  <Image src="/logo-mark.png" alt="CocinIA icon" width={22} height={22} className="h-5 w-5" />
-                  <span className="text-sm font-medium text-[--ink]">CocinIA</span>
-                </div>
-                <div className="mt-4 space-y-3">
-                  <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[0]?.description}</div>
-                  <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[1]?.description}</div>
-                  <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[2]?.description}</div>
+            {heroDemoVideoSrc ? (
+              <div className="h-full w-full bg-black">
+                <video
+                  className="h-full w-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  poster="/logo-app-tile.png"
+                >
+                  <source src={heroDemoVideoSrc} type="video/mp4" />
+                </video>
+              </div>
+            ) : (
+              <div className="h-full w-full bg-gradient-to-b from-brand-primary-100/70 via-[--surface] to-[--card] p-5 dark:from-brand-primary-900/35">
+                <div className="flex h-full flex-col rounded-3xl border border-[--border] bg-[--surface] p-4">
+                  <div className="flex items-center gap-2 rounded-2xl bg-[--card] px-3 py-2">
+                    <Image src="/logo-mark.png" alt="CocinIA icon" width={22} height={22} className="h-5 w-5" />
+                    <span className="text-sm font-medium text-[--ink]">CocinIA</span>
+                  </div>
+                  <div className="mt-4 space-y-3">
+                    <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[0]?.description}</div>
+                    <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[1]?.description}</div>
+                    <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[2]?.description}</div>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </PhoneMockup>
 
           {chips.map((chip, index) => (

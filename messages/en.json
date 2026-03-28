@@ -47,8 +47,8 @@
     "title": "Designed to be a joy to use",
     "tabs": [
       { "key": "home", "label": "Home" },
-      { "key": "plan", "label": "Weekly plan" },
       { "key": "recipes", "label": "Cookbook" },
+      { "key": "plan", "label": "Weekly plan" },
       { "key": "shopping", "label": "Shopping list" }
     ]
   },
