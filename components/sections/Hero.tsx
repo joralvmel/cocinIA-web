@@ -31,9 +31,39 @@ export function Hero() {
   const locale = useLocale()
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [recipesCount, setRecipesCount] = useState<number | null>(null)
 
   useEffect(() => {
     setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    const loadRecipesCount = async () => {
+      try {
+        const response = await fetch('/api/recipes-count', {
+          method: 'POST',
+          cache: 'no-store',
+          signal: controller.signal,
+        })
+
+        if (!response.ok) {
+          return
+        }
+
+        const payload = (await response.json()) as { count?: number }
+        const total = payload.count
+        if (typeof total === 'number' && Number.isFinite(total)) {
+          setRecipesCount(total)
+        }
+      } catch {
+        // Keep fallback value when count request is unavailable.
+      }
+    }
+
+    void loadRecipesCount()
+    return () => controller.abort()
   }, [])
 
   const normalizedLocale: AppLocale = useMemo(() => {
@@ -45,11 +75,16 @@ export function Hero() {
 
   const featureItems = t.raw('features.items') as Array<{ title: string; description: string }>
   const chips = [
-    { title: featureItems[0]?.title, icon: '✨', positionClass: '-left-8 top-20' },
-    { title: featureItems[1]?.title, icon: '📅', positionClass: '-right-6 top-40' },
-    { title: featureItems[2]?.title, icon: '🛒', positionClass: '-left-6 bottom-24' },
-    { title: featureItems[3]?.title, icon: '📚', positionClass: '-right-8 bottom-14' },
+    { title: featureItems[0]?.title, icon: '✨', positionClass: 'left-2 top-16 md:-left-8 md:top-20' },
+    { title: featureItems[1]?.title, icon: '📅', positionClass: 'right-2 top-36 md:-right-6 md:top-40' },
+    { title: featureItems[2]?.title, icon: '🛒', positionClass: 'left-3 bottom-24 md:-left-6 md:bottom-24' },
+    { title: featureItems[3]?.title, icon: '📚', positionClass: 'right-3 bottom-14 md:-right-8 md:bottom-14' },
   ].filter((chip): chip is { title: string; icon: string; positionClass: string } => Boolean(chip.title))
+
+  const formattedRecipesCount = useMemo(() => {
+    const count = recipesCount ?? 24381
+    return new Intl.NumberFormat(normalizedLocale).format(count)
+  }, [recipesCount, normalizedLocale])
 
   const highlightText = t('hero.title_highlight')
   const title = t('hero.title')
@@ -97,7 +132,7 @@ export function Hero() {
 
           <motion.div variants={child} className="inline-flex items-center gap-2 text-sm text-[--muted]">
             <Lock className="h-4 w-4 text-brand-primary-600" />
-            <span>24,381 {t('hero.social_proof')}</span>
+            <span>{formattedRecipesCount} {t('hero.social_proof')}</span>
           </motion.div>
         </motion.div>
 
@@ -147,9 +182,9 @@ export function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: 'easeOut', delay: 0.4 + index * 0.12 }}
-              className={`absolute rounded-full border border-[--border] bg-[--surface] px-3 py-1 text-xs font-medium shadow-sm ${chip.positionClass}`}
+              className={`absolute max-w-[9.5rem] rounded-full border border-[--border] bg-[--surface] px-3 py-1 text-xs font-medium shadow-sm sm:max-w-none ${chip.positionClass}`}
             >
-              {chip.icon} {chip.title}
+              <span className="block truncate">{chip.icon} {chip.title}</span>
             </motion.div>
           ))}
         </motion.div>
