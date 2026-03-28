@@ -16,6 +16,17 @@ function parseHashTokens() {
   }
 }
 
+function parseSearchError() {
+  const params = new URLSearchParams(window.location.search)
+  const error = params.get('error')
+  const errorDescription = params.get('error_description')
+
+  return {
+    error,
+    errorDescription,
+  }
+}
+
 export default function ResetPasswordPage() {
   const [status, setStatus] = useState<Status>('loading')
   const [message, setMessage] = useState('Validando enlace...')
@@ -26,6 +37,17 @@ export default function ResetPasswordPage() {
   useEffect(() => {
     const bootstrap = async () => {
       try {
+        const { error, errorDescription } = parseSearchError()
+        if (error) {
+          setStatus('error')
+          if (error === 'access_denied') {
+            setMessage('Este enlace ya fue usado o ha expirado. Solicita uno nuevo desde la app.')
+          } else {
+            setMessage(errorDescription || 'No se pudo validar el enlace de recuperacion.')
+          }
+          return
+        }
+
         const { accessToken, refreshToken } = parseHashTokens()
 
         if (accessToken && refreshToken) {
@@ -46,7 +68,7 @@ export default function ResetPasswordPage() {
         const { data } = await supabase.auth.getSession()
         if (!data.session) {
           setStatus('error')
-          setMessage('No hay una sesion valida para cambiar la contrasena.')
+          setMessage('Este enlace ya fue usado o ha expirado. Solicita uno nuevo desde la app.')
           return
         }
 

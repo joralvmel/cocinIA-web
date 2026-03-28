@@ -105,11 +105,11 @@ export function Waitlist() {
             <Badge className="bg-[--card]">🍎 {t('badge_ios')}</Badge>
           </div>
 
-          <div className="mx-auto mt-8 max-w-xl rounded-full border border-[--border] bg-[--card] p-2">
+          <div className="mx-auto mt-8 max-w-xl rounded-3xl border border-[--border] bg-[--card] p-3 sm:rounded-full sm:p-2">
             {success ? (
               <p className="px-5 py-3 text-sm text-brand-primary-600">{t('success')}</p>
             ) : (
-              <form onSubmit={onSubmit} className="flex flex-col gap-2 sm:flex-row">
+              <form onSubmit={onSubmit} className="grid grid-cols-1 gap-2 sm:flex sm:items-center">
                 <input
                   type="email"
                   required
@@ -117,12 +117,12 @@ export function Waitlist() {
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder={t('placeholder')}
                   aria-invalid={Boolean(error)}
-                  className="h-12 flex-1 rounded-full border border-transparent bg-[--surface] px-5 text-sm outline-none transition focus:border-brand-primary-600"
+                  className="h-12 w-full min-w-0 rounded-xl border border-transparent bg-[--surface] px-5 text-sm outline-none transition focus:border-brand-primary-600 sm:flex-1 sm:rounded-full"
                 />
                 <button
                   type="submit"
                   disabled={loading}
-                  className="h-12 rounded-full bg-brand-primary-600 px-6 text-sm font-medium text-white transition hover:bg-brand-primary-700 disabled:opacity-60"
+                  className="h-12 w-full rounded-xl bg-brand-primary-600 px-6 text-sm font-medium text-white transition hover:bg-brand-primary-700 disabled:opacity-60 sm:w-auto sm:rounded-full"
                 >
                   {loading ? '...' : t('cta')}
                 </button>
