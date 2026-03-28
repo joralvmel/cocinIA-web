@@ -87,17 +87,6 @@ export function Pricing() {
           </article>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
-          className="mt-8 text-center"
-        >
-          <span className="inline-flex rounded-full bg-amber-100 px-4 py-2 text-sm font-medium text-amber-900 dark:bg-amber-900/30 dark:text-amber-200">
-            {t('first_month')}
-          </span>
-        </motion.div>
       </div>
     </section>
   )

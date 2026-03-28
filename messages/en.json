@@ -95,7 +95,7 @@
     },
     "premium": {
       "name": "Premium",
-      "price": "€4.99",
+      "price": "€2.99",
       "period": "per month",
       "description": "For people who want the full experience.",
       "cta": "Start Premium",
@@ -109,7 +109,7 @@
         "Priority access to new features"
       ]
     },
-    "first_month": "🎉 First month free for new users"
+    "first_month": ""
   },
   "faq": {
     "label": "FAQ",

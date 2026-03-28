@@ -95,7 +95,7 @@
     },
     "premium": {
       "name": "Premium",
-      "price": "4,99€",
+      "price": "2,99€",
       "period": "al mes",
       "description": "Para quienes quieren sacarle el máximo partido.",
       "cta": "Empezar Premium",
@@ -109,7 +109,7 @@
         "Acceso prioritario a nuevas funciones"
       ]
     },
-    "first_month": "🎉 Primer mes gratis para nuevos usuarios"
+    "first_month": ""
   },
   "faq": {
     "label": "FAQ",
