@@ -6,6 +6,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useCallback } from 'react'
 
+import messagesEs from '@/messages/recipe.es.json'
+import messagesEn from '@/messages/recipe.en.json'
+
 // ─── Types ────────────────────────────────────────────────────────────
 interface Ingredient {
   name: string
@@ -72,13 +75,13 @@ export function RecipePageContent({ recipe, messages, initialLocale }: RecipePag
   // Load messages for current locale dynamically
   const [currentMessages, setCurrentMessages] = useState<Messages>(messages)
 
+  const localeMessages: Record<string, Messages> = { es: messagesEs as Messages, en: messagesEn as Messages }
+
   const handleLocaleChange = useCallback(async (newLocale: string) => {
-    try {
-      const mod = await import(`@/messages/recipe.${newLocale}.json`)
-      setCurrentMessages(mod.default)
+    const msgs = localeMessages[newLocale]
+    if (msgs) {
+      setCurrentMessages(msgs)
       setLocale(newLocale)
-    } catch {
-      // fallback: keep current
     }
   }, [])
 
