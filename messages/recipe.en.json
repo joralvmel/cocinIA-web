@@ -1,0 +1,45 @@
+{
+  "stats": {
+    "prepTime": "Prep time",
+    "cookTime": "Cook time",
+    "totalTime": "Total",
+    "servings": "Servings",
+    "difficulty": "Difficulty",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard"
+  },
+  "sections": {
+    "ingredients": "Ingredients",
+    "steps": "Preparation",
+    "chefTips": "Chef tips",
+    "storage": "Storage",
+    "variations": "Variations",
+    "tags": "Tags",
+    "nutrition": "Nutrition",
+    "cost": "Estimated cost",
+    "perServing": "per serving",
+    "optional": "optional"
+  },
+  "cta": {
+    "openInApp": "Open in CocinIA",
+    "haveApp": "Have the app installed?",
+    "noApp": "Don't have it?",
+    "discoverApp": "Discover CocinIA",
+    "copyLink": "Copy link",
+    "copied": "Copied!",
+    "downloadAndroid": "Download for Android",
+    "iosSoon": "iOS coming soon",
+    "appTagline": "Generate recipes with AI, plan your week and create your shopping list.",
+    "generateRecipes": "Generate personalized recipes with AI"
+  },
+  "notFound": {
+    "title": "This recipe is not available",
+    "subtitle": "The link may have expired or the recipe was deleted.",
+    "cta": "Go to cocinia.online"
+  },
+  "meta": {
+    "notFoundTitle": "Recipe not found — CocinIA",
+    "servings": "servings"
+  }
+}
