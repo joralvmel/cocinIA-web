@@ -8,7 +8,7 @@ import messagesEn from '@/messages/recipe.en.json'
 
 const messagesMap: Record<string, typeof messagesEs> = { es: messagesEs, en: messagesEn }
 
-const RECIPE_FIELDS = 'id, title, description, ingredients, steps, nutrition, estimated_cost, cost_currency, cost_per_serving, prep_time_minutes, cook_time_minutes, total_time_minutes, servings, difficulty, cuisine, tags, chef_tips, storage_instructions, variations, meal_types, image_url, share_token, created_at'
+const RECIPE_FIELDS = 'id, title, description, ingredients, steps, nutrition, estimated_cost, cost_currency, cost_per_serving, prep_time_minutes, cook_time_minutes, total_time_minutes, servings, difficulty, cuisine, tags, chef_tips, storage_instructions, variations, meal_types, image_url, source_url, import_source, share_token, created_at'
 
 async function getRecipeByToken(token: string): Promise<SharedRecipe | null> {
   const { data, error } = await supabase

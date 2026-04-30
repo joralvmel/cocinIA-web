@@ -4,21 +4,21 @@
     "screenshots": "App",
     "pricing": "Precios",
     "faq": "FAQ",
-    "cta": "Descargar"
+    "cta": "Android pronto"
   },
   "hero": {
-    "badge": "Disponible en Android",
+    "badge": "Android próximamente",
     "title": "Tu chef personal, impulsado por IA",
     "title_highlight": "impulsado por IA",
     "subtitle": "CocinIA genera recetas a tu medida, planifica tu semana y crea tu lista de la compra automáticamente. Sin esfuerzo.",
-    "cta_primary": "Descargar en Android",
+    "cta_primary": "Android próximamente",
     "cta_secondary": "Ver funciones",
     "social_proof": "recetas guardadas en CocinIA"
   },
   "features": {
     "label": "Funciones",
     "title": "Todo lo que necesitas en tu cocina",
-    "subtitle": "Cuatro funciones diseñadas para hacer tu vida en la cocina más fácil, variada y organizada.",
+    "subtitle": "Un conjunto completo de funciones para hacer tu vida en la cocina más fácil, variada y organizada.",
     "items": [
       {
         "icon": "Sparkles",
@@ -39,6 +39,16 @@
         "icon": "BookOpen",
         "title": "Recetario personal",
         "description": "Guarda, organiza y busca todas tus recetas generadas. Filtra por tipo de comida, dificultad o tiempo de preparación."
+      },
+      {
+        "icon": "Link2",
+        "title": "Importar desde redes",
+        "description": "Pega un enlace de Instagram, TikTok, YouTube o cualquier web de recetas. CocinIA extrae los pasos y los ingredientes automáticamente."
+      },
+      {
+        "icon": "Layers",
+        "title": "Batch cooking",
+        "description": "Planifica sesiones de batch cooking para preparar varias comidas de una vez y ahorrar tiempo durante la semana."
       }
     ]
   },
@@ -83,30 +93,39 @@
       "price": "0€",
       "period": "para siempre",
       "description": "Perfecto para empezar a explorar CocinIA.",
-      "cta": "Descargar gratis",
+      "cta": "Recibir novedades",
       "features": [
-        "30 recetas generadas al mes",
-        "1 plan semanal activo",
-        "Recetario hasta 30 recetas",
-        "Lista de la compra básica",
-        "Soporte español e inglés",
-        "Con anuncios"
+        { "label": "50 créditos / mes", "included": true },
+        { "label": "Recetas guardadas hasta 30", "included": true },
+        { "label": "Generar y modificar recetas", "included": true },
+        { "label": "Plan semanal con IA", "included": true },
+        { "label": "Historial de planes: último mes", "included": true },
+        { "label": "Con anuncios", "included": true },
+        { "label": "Plan desde tu recetario", "included": false },
+        { "label": "Batch cooking", "included": false },
+        { "label": "Importar desde Instagram/URL", "included": false },
+        { "label": "Lista de la compra exportable", "included": false }
       ]
     },
     "premium": {
       "name": "Premium",
       "price": "2,99€",
       "period": "al mes",
+      "yearly": "29,99€/año",
       "description": "Para quienes quieren sacarle el máximo partido.",
-      "cta": "Empezar Premium",
+      "cta": "Unirme a la lista",
       "badge": "Más popular",
       "features": [
-        "Generación ilimitada de recetas",
-        "Planes semanales ilimitados",
-        "Recetario ilimitado",
-        "Lista de la compra avanzada",
-        "Sin anuncios",
-        "Acceso prioritario a nuevas funciones"
+        { "label": "1.000 créditos / mes", "included": true },
+        { "label": "Recetas guardadas ilimitadas", "included": true },
+        { "label": "Generar y modificar recetas", "included": true },
+        { "label": "Plan semanal con IA", "included": true },
+        { "label": "Plan desde tu recetario", "included": true },
+        { "label": "Historial de planes: completo", "included": true },
+        { "label": "Batch cooking", "included": true },
+        { "label": "Importar desde Instagram/URL", "included": true },
+        { "label": "Lista de la compra exportable", "included": true },
+        { "label": "Sin anuncios", "included": true }
       ]
     },
     "first_month": ""
@@ -116,35 +135,35 @@
     "title": "Preguntas frecuentes",
     "items": [
       {
-        "q": "¿Funciona sin conexión a internet?",
-        "a": "La generación de recetas con IA requiere conexión, pero puedes consultar tus recetas guardadas y la lista de la compra sin internet."
+        "q": "¿Puedo importar recetas desde Instagram, TikTok, YouTube o webs?",
+        "a": "Sí. Pega el enlace y CocinIA extrae la receta. Esta función está disponible en Premium y cuesta 5 créditos por importación."
+      },
+      {
+        "q": "¿Qué es el batch cooking?",
+        "a": "Batch cooking te permite preparar varias comidas en una sola sesión para ahorrar tiempo durante la semana. Está disponible en Premium."
+      },
+      {
+        "q": "¿Cómo funcionan los créditos?",
+        "a": "Los créditos se reinician cada mes. El plan gratuito incluye 50 créditos/mes y Premium incluye 1.000 créditos/mes. Generar, modificar y planificar consume créditos según el plan."
+      },
+      {
+        "q": "¿Puedo personalizar por dietas o alergias?",
+        "a": "Sí. Configura tus preferencias, restricciones y objetivos para que la IA adapte cada receta y plan semanal a ti."
       },
       {
         "q": "¿Mis datos son privados?",
         "a": "Sí. Tus recetas, preferencias y datos de perfil son privados y nunca se comparten con terceros. Puedes eliminar tu cuenta en cualquier momento."
       },
       {
-        "q": "¿Puedo cancelar la suscripción Premium?",
-        "a": "Sí, puedes cancelar en cualquier momento desde la configuración de tu cuenta en Google Play. No hay permanencia ni penalizaciones."
-      },
-      {
-        "q": "¿Qué pasa cuando llego al límite del plan gratuito?",
-        "a": "Se bloquea la generación de nuevas recetas hasta el próximo mes. Tus recetas guardadas y el plan activo siguen accesibles."
-      },
-      {
-        "q": "¿En qué idiomas está disponible la app?",
-        "a": "CocinIA está disponible en español e inglés. La app detecta el idioma de tu dispositivo automáticamente."
-      },
-      {
-        "q": "¿Cuándo estará disponible en iOS?",
-        "a": "La versión iOS está en desarrollo. Apúntate a la lista de espera y te avisamos en cuanto esté disponible."
+        "q": "¿Cuándo estará disponible Android en Google Play?",
+        "a": "Estamos preparando el lanzamiento en Play Store. Únete a la lista y te avisamos en cuanto esté disponible."
       }
     ]
   },
   "waitlist": {
-    "title": "¿Tienes iPhone? Únete a la lista de espera",
-    "subtitle": "La versión iOS está en camino. Sé el primero en saberlo.",
-    "badge_android": "Android disponible ahora",
+    "title": "Únete a la lista de espera de CocinIA",
+    "subtitle": "Te avisaremos en cuanto haya nuevas plataformas y actualizaciones.",
+    "badge_android": "Android próximamente",
     "badge_ios": "iOS próximamente",
     "placeholder": "tu@email.com",
     "cta": "Apuntarme",

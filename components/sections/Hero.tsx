@@ -2,7 +2,7 @@
 
 import { Badge } from '@/components/ui/Badge'
 import { PhoneMockup } from '@/components/ui/PhoneMockup'
-import { AppLocale, heroDemoVideos } from '@/lib/brand'
+import { androidAvailable, androidDownloadUrl, AppLocale, heroDemoVideos } from '@/lib/brand'
 import { motion } from 'framer-motion'
 import { Lock } from 'lucide-react'
 import Image from 'next/image'
@@ -25,6 +25,8 @@ const child = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
+
+const showPhoneMockup = false;
 
 export function Hero() {
   const t = useTranslations()
@@ -80,9 +82,7 @@ export function Hero() {
     return new Intl.NumberFormat(normalizedLocale).format(count)
   }, [recipesCount, normalizedLocale])
 
-  const highlightText = t('hero.title_highlight')
-  const title = t('hero.title')
-  const [before, after] = title.split(highlightText)
+  const androidEnabled = androidAvailable && Boolean(androidDownloadUrl)
 
   return (
     <section
@@ -90,19 +90,29 @@ export function Hero() {
       className="relative overflow-hidden bg-gradient-to-b from-brand-primary-50/55 via-transparent to-transparent pt-32 dark:from-brand-primary-900/30"
     >
       <div className="hero-grain" />
-      <div className="section-shell relative grid min-h-[100svh] items-center gap-16 pb-16 lg:grid-cols-2">
-        <motion.div variants={parent} initial="hidden" animate="show" className="space-y-8">
+      <div
+        className={`section-shell relative grid min-h-[100svh] items-center gap-16 pb-16 ${showPhoneMockup ? 'lg:grid-cols-2' : 'grid-cols-1'}`}
+      >
+        <motion.div
+          variants={parent}
+          initial="hidden"
+          animate="show"
+          className={`space-y-8 ${!showPhoneMockup ? 'max-w-2xl mx-auto' : ''}`}
+        >
           <motion.div variants={child}>
-            <Badge className="border-brand-primary-200 bg-brand-primary-50 text-brand-primary-700 dark:border-brand-primary-600/30 dark:bg-brand-primary-600/10 dark:text-brand-primary-400">
-              <span className="mr-2 h-2 w-2 rounded-full bg-brand-primary-600" />
+            <Badge
+                className="border-brand-primary-200 bg-brand-primary-50 text-brand-primary-700 dark:border-brand-primary-600/30 dark:bg-brand-primary-600/10 dark:text-brand-primary-400">
+              <span className="mr-2 h-2 w-2 rounded-full bg-brand-primary-600"/>
               {t('hero.badge')}
             </Badge>
           </motion.div>
 
-          <motion.h1 variants={child} className="max-w-[14ch] text-5xl font-black leading-[0.95] sm:text-6xl lg:text-[5rem]">
-            {before}
-            <span className="text-brand-primary-600">{highlightText}</span>
-            {after}
+          <motion.h1
+              variants={child}
+              className="text-5xl font-black leading-[0.95] sm:text-6xl lg:text-[5rem]"
+          >
+            <span className="block">Tu chef personal,</span>
+            <span className="mt-4 block text-brand-primary-600">impulsado por IA</span>
           </motion.h1>
 
           <motion.p variants={child} className="max-w-xl text-lg font-light text-[--muted]">
@@ -110,66 +120,78 @@ export function Hero() {
           </motion.p>
 
           <motion.div variants={child} className="flex flex-wrap gap-3">
+            {androidEnabled ? (
+                <a
+                    href={androidDownloadUrl}
+                    className="rounded-full bg-brand-primary-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-brand-primary-700"
+                >
+                  {t('hero.cta_primary')}
+                </a>
+            ) : (
+                <button
+                    type="button"
+                    disabled
+                    className="cursor-not-allowed rounded-full bg-brand-primary-600/40 px-6 py-3 text-sm font-medium text-white/80"
+                >
+                  {t('hero.cta_primary')}
+                </button>
+            )}
             <a
-              href="#pricing"
-              className="rounded-full bg-brand-primary-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-brand-primary-700"
-            >
-              {t('hero.cta_primary')}
-            </a>
-            <a
-              href="#features"
-              className="rounded-full border border-[--border] bg-[--surface] px-6 py-3 text-sm font-medium text-[--ink] transition hover:border-brand-primary-500/50"
+                href="#features"
+                className="rounded-full border border-[--border] bg-[--surface] px-6 py-3 text-sm font-medium text-[--ink] transition hover:border-brand-primary-500/50"
             >
               {t('hero.cta_secondary')}
             </a>
           </motion.div>
 
           <motion.div variants={child} className="inline-flex items-center gap-2 text-sm text-[--muted]">
-            <Lock className="h-4 w-4 text-brand-primary-600" />
+            <Lock className="h-4 w-4 text-brand-primary-600"/>
             <span>{formattedRecipesCount} {t('hero.social_proof')}</span>
           </motion.div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-          className="relative mx-auto w-full max-w-md"
-        >
-          <PhoneMockup>
-            {mounted ? (
-              <div className="h-full w-full bg-black">
-                <video
-                  key={`${themeKey}-${normalizedLocale}`}
-                  className="h-full w-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  controls
-                  preload="metadata"
-                  poster="/logo-app-tile.png"
-                >
-                  <source src={heroDemoVideoSrc} type="video/mp4" />
-                </video>
-              </div>
-            ) : (
-              <div className="h-full w-full bg-gradient-to-b from-brand-primary-100/70 via-[--surface] to-[--card] p-5 dark:from-brand-primary-900/35">
-                <div className="flex h-full flex-col rounded-3xl border border-[--border] bg-[--surface] p-4">
-                  <div className="flex items-center gap-2 rounded-2xl bg-[--card] px-3 py-2">
-                    <Image src="/logo-mark.png" alt="CocinIA icon" width={22} height={22} className="h-5 w-5" />
-                    <span className="text-sm font-medium text-[--ink]">CocinIA</span>
-                  </div>
-                  <div className="mt-4 space-y-3">
-                    <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[0]?.description}</div>
-                    <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[1]?.description}</div>
-                    <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[2]?.description}</div>
+        {showPhoneMockup && (
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+            className="relative mx-auto w-full max-w-md"
+          >
+            <PhoneMockup>
+              {mounted ? (
+                <div className="h-full w-full bg-black">
+                  <video
+                    key={`${themeKey}-${normalizedLocale}`}
+                    className="h-full w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    controls
+                    preload="metadata"
+                    poster="/logo-app-tile.png"
+                  >
+                    <source src={heroDemoVideoSrc} type="video/mp4" />
+                  </video>
+                </div>
+              ) : (
+                <div className="h-full w-full bg-gradient-to-b from-brand-primary-100/70 via-[--surface] to-[--card] p-5 dark:from-brand-primary-900/35">
+                  <div className="flex h-full flex-col rounded-3xl border border-[--border] bg-[--surface] p-4">
+                    <div className="flex items-center gap-2 rounded-2xl bg-[--card] px-3 py-2">
+                      <Image src="/logo-mark.png" alt="CocinIA icon" width={22} height={22} className="h-5 w-5" />
+                      <span className="text-sm font-medium text-[--ink]">CocinIA</span>
+                    </div>
+                    <div className="mt-4 space-y-3">
+                      <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[0]?.description}</div>
+                      <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[1]?.description}</div>
+                      <div className="rounded-2xl border border-[--border] bg-[--card] p-3 text-xs text-[--muted]">{featureItems[2]?.description}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </PhoneMockup>
-        </motion.div>
+              )}
+            </PhoneMockup>
+          </motion.div>
+        )}
       </div>
     </section>
   )

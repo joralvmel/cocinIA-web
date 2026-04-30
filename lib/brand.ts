@@ -38,3 +38,6 @@ export const heroDemoVideos: Record<'light' | 'dark', Record<AppLocale, string>>
     es: '/demo/dark-es.mp4',
   },
 }
+
+export const androidDownloadUrl = ''
+export const androidAvailable = false

@@ -1,7 +1,7 @@
 'use client'
 
 import { RecipeNavbar } from './RecipeNavbar'
-import { Clock, Users, Flame, ChefHat, Copy, Check, Lightbulb, Refrigerator, Sparkles, Tag } from 'lucide-react'
+import { Clock, Users, Flame, ChefHat, Copy, Check, Lightbulb, Refrigerator, Sparkles, Tag, Instagram, Youtube, Music2, Globe } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useCallback } from 'react'
@@ -55,6 +55,8 @@ export interface SharedRecipe {
   variations?: string[] | null
   meal_types?: string[] | null
   image_url?: string | null
+  source_url?: string | null
+  import_source?: 'instagram' | 'youtube' | 'tiktok' | 'web' | null
   share_token: string
   created_at: string
 }
@@ -111,6 +113,9 @@ export function RecipePageContent({ recipe, messages, initialLocale }: RecipePag
 
   const diffLabel = t(`stats.${recipe.difficulty}`)
   const deepLink = `cocinia://recipe/${recipe.share_token}`
+  const source = resolveSource(recipe)
+  const sourceMeta = source ? getSourceMeta(source) : null
+  const SourceIcon = sourceMeta?.icon
 
   return (
     <div className="min-h-screen bg-[--bg] text-[--ink]">
@@ -178,6 +183,22 @@ export function RecipePageContent({ recipe, messages, initialLocale }: RecipePag
         <div className="min-w-0 flex-1">
           {/* Title */}
           <h1 className="mb-2 font-serif text-3xl font-bold tracking-tight sm:text-4xl">{recipe.title}</h1>
+          {recipe.source_url && sourceMeta && SourceIcon ? (
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[--border] bg-[--surface] px-3 py-1 text-xs font-medium text-[--muted]">
+              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[--surface-container] text-[--green]">
+                <SourceIcon className="h-3.5 w-3.5" />
+              </span>
+              <span>{t('meta.source')}:</span>
+              <a
+                href={recipe.source_url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[--green] hover:underline"
+              >
+                {sourceMeta.label}
+              </a>
+            </div>
+          ) : null}
           <p className="mb-6 text-[--muted] leading-relaxed">{recipe.description}</p>
 
           {/* Chips */}
@@ -437,4 +458,28 @@ function StepItem({ step, tipLabel }: { step: RecipeStep; tipLabel: string }) {
       </div>
     </div>
   )
+}
+
+function resolveSource(recipe: SharedRecipe): 'instagram' | 'youtube' | 'tiktok' | 'web' | null {
+  if (recipe.import_source) return recipe.import_source
+  if (!recipe.source_url) return null
+  const url = recipe.source_url.toLowerCase()
+  if (url.includes('instagram.com')) return 'instagram'
+  if (url.includes('tiktok.com')) return 'tiktok'
+  if (url.includes('youtube.com') || url.includes('youtu.be')) return 'youtube'
+  return 'web'
+}
+
+function getSourceMeta(source: 'instagram' | 'youtube' | 'tiktok' | 'web') {
+  switch (source) {
+    case 'instagram':
+      return { label: 'Instagram', icon: Instagram }
+    case 'youtube':
+      return { label: 'YouTube', icon: Youtube }
+    case 'tiktok':
+      return { label: 'TikTok', icon: Music2 }
+    case 'web':
+    default:
+      return { label: 'Web', icon: Globe }
+  }
 }

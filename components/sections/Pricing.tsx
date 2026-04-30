@@ -7,8 +7,9 @@ import { useTranslations } from 'next-intl'
 
 export function Pricing() {
   const t = useTranslations('pricing')
-  const freeFeatures = t.raw('free.features') as string[]
-  const premiumFeatures = t.raw('premium.features') as string[]
+  const freeFeatures = t.raw('free.features') as Array<{ label: string; included: boolean }>
+  const premiumFeatures = t.raw('premium.features') as Array<{ label: string; included: boolean }>
+  const premiumYearly = t.raw('premium.yearly') as string
 
   return (
     <section id="pricing" className="bg-[--bg] py-24">
@@ -45,19 +46,16 @@ export function Pricing() {
             </a>
 
             <ul className="mt-8 space-y-3">
-              {freeFeatures.map((feature, index) => {
-                const included = index < freeFeatures.length - 1
-                return (
-                  <li key={feature} className="flex items-center gap-3 text-sm text-[--ink]">
-                    {included ? (
-                      <Check className="h-4 w-4 text-brand-primary-600" />
-                    ) : (
-                      <X className="h-4 w-4 text-[--muted]" />
-                    )}
-                    <span className={included ? '' : 'text-[--muted]'}>{feature}</span>
-                  </li>
-                )
-              })}
+              {freeFeatures.map((feature) => (
+                <li key={feature.label} className="flex items-center gap-3 text-sm text-[--ink]">
+                  {feature.included ? (
+                    <Check className="h-4 w-4 text-brand-primary-600" />
+                  ) : (
+                    <X className="h-4 w-4 text-[--muted]" />
+                  )}
+                  <span className={feature.included ? '' : 'text-[--muted]'}>{feature.label}</span>
+                </li>
+              ))}
             </ul>
           </article>
 
@@ -68,6 +66,7 @@ export function Pricing() {
             <h3 className="text-xl font-semibold">{t('premium.name')}</h3>
             <p className="mt-3 text-5xl font-black">{t('premium.price')}</p>
             <p className="mt-1 text-sm text-white/80">{t('premium.period')}</p>
+            {premiumYearly ? <p className="mt-1 text-sm text-white/70">{premiumYearly}</p> : null}
             <p className="mt-4 text-sm text-white/80">{t('premium.description')}</p>
             <a
               href="#waitlist"
@@ -78,9 +77,13 @@ export function Pricing() {
 
             <ul className="mt-8 space-y-3">
               {premiumFeatures.map((feature) => (
-                <li key={feature} className="flex items-center gap-3 text-sm">
-                  <Check className="h-4 w-4 text-white" />
-                  <span>{feature}</span>
+                <li key={feature.label} className="flex items-center gap-3 text-sm">
+                  {feature.included ? (
+                    <Check className="h-4 w-4 text-white" />
+                  ) : (
+                    <X className="h-4 w-4 text-white/70" />
+                  )}
+                  <span className={feature.included ? '' : 'text-white/70'}>{feature.label}</span>
                 </li>
               ))}
             </ul>

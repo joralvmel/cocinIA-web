@@ -28,12 +28,12 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         <section className="space-y-2 rounded-3xl border border-[--border] bg-[--card] p-6">
           <h2 className="text-xl font-semibold">{t('social.title')}</h2>
           <a
-            href="https://www.instagram.com/cocinia.26/"
+            href="https://www.instagram.com/cocinia.app/"
             target="_blank"
             rel="noreferrer"
             className="text-sm text-brand-primary-600 hover:underline"
           >
-            @cocinia.26
+            @cocinia.app
           </a>
           <p className="text-sm text-[--muted]">{t('social.body')}</p>
         </section>

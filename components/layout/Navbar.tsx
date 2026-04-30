@@ -2,6 +2,7 @@
 
 import { LanguageToggle } from '@/components/ui/LanguageToggle'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { androidAvailable, androidDownloadUrl } from '@/lib/brand'
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -13,6 +14,7 @@ export function Navbar() {
   const t = useTranslations('nav')
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const androidEnabled = androidAvailable && Boolean(androidDownloadUrl)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -51,16 +53,30 @@ export function Navbar() {
         <div className="hidden items-center gap-2 md:flex">
           <LanguageToggle />
           <ThemeToggle />
-          <a
-            href="#waitlist"
-            className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-              scrolled
-                ? 'bg-brand-primary-600 text-white hover:bg-brand-primary-700'
-                : 'border border-[--border] bg-transparent text-[--ink] hover:border-brand-primary-500/40'
-            }`}
-          >
-            {t('cta')}
-          </a>
+          {androidEnabled ? (
+            <a
+              href={androidDownloadUrl}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                scrolled
+                  ? 'bg-brand-primary-600 text-white hover:bg-brand-primary-700'
+                  : 'border border-[--border] bg-transparent text-[--ink] hover:border-brand-primary-500/40'
+              }`}
+            >
+              {t('cta')}
+            </a>
+          ) : (
+            <button
+              type="button"
+              disabled
+              className={`cursor-not-allowed rounded-full px-4 py-2 text-sm font-medium ${
+                scrolled
+                  ? 'bg-brand-primary-600/40 text-white/80'
+                  : 'border border-[--border] bg-transparent text-[--muted]'
+              }`}
+            >
+              {t('cta')}
+            </button>
+          )}
         </div>
 
         <button
@@ -93,13 +109,23 @@ export function Navbar() {
           <div className="flex items-center gap-2">
             <LanguageToggle />
             <ThemeToggle />
-            <a
-              href="#waitlist"
-              onClick={() => setOpen(false)}
-              className="ml-auto rounded-full bg-brand-primary-600 px-4 py-2 text-sm font-medium text-white"
-            >
-              {t('cta')}
-            </a>
+            {androidEnabled ? (
+              <a
+                href={androidDownloadUrl}
+                onClick={() => setOpen(false)}
+                className="ml-auto rounded-full bg-brand-primary-600 px-4 py-2 text-sm font-medium text-white"
+              >
+                {t('cta')}
+              </a>
+            ) : (
+              <button
+                type="button"
+                disabled
+                className="ml-auto cursor-not-allowed rounded-full bg-brand-primary-600/40 px-4 py-2 text-sm font-medium text-white/80"
+              >
+                {t('cta')}
+              </button>
+            )}
           </div>
         </div>
       </motion.div>

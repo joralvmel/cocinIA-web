@@ -2,7 +2,7 @@
 
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { motion } from 'framer-motion'
-import { BookOpen, CalendarDays, ShoppingCart, Sparkles } from 'lucide-react'
+import { BookOpen, CalendarDays, Layers, Link2, ShoppingCart, Sparkles } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 const iconMap = {
@@ -10,6 +10,8 @@ const iconMap = {
   CalendarDays,
   ShoppingCart,
   BookOpen,
+  Link2,
+  Layers,
 }
 
 export function Features() {

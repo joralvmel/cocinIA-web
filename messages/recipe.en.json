@@ -40,6 +40,7 @@
   },
   "meta": {
     "notFoundTitle": "Recipe not found — CocinIA",
-    "servings": "servings"
+    "servings": "servings",
+    "source": "Source"
   }
 }
